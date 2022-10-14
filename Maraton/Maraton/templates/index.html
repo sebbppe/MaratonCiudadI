@@ -1,5 +1,88 @@
 {% extends 'base.html' %}
 {% block title %}Saludar{% endblock  %}
 {% block cuerpo %}
-<h1>Este es el campo de saludo</h1>
+
+{% for i in carreras  %}
+    {{i.0}}
+    {{i.1}}
+    {% for k in calles  %}
+    <div class="d-inline-flex">
+        <div class="cuadrado">
+            {% for m in semaforos  %}
+            {%if m.0 == 'Calle' %}
+            {%if m.1 == k.1 and m.3 == i.1  %}
+                {%if m.4 == 'V'%}
+                    <div class="circulo">
+
+                    
+                    </div>
+                {% endif %}
+                {%if m.4 == 'A'%}
+                    <div class="circulo" style="background: yellow;">
+
+                    
+                    </div>
+                {% endif %}
+                {%if m.4 == 'R'%}
+                    <div class="circulo" style="background: red;">
+
+                    
+                    </div>
+                {% endif %}
+                {%if m.4 == 'I'%}
+                    <div class="circulo" style="background: blue;">
+
+                    
+                    </div>
+                {% endif %}
+                {%if m.4 == 'FS'%}
+                    <div class="circulo" style="background: black;">
+
+                    
+                    </div>
+                {% endif %}
+                {% endif %}
+                
+            {% endif %}
+            {%if m.0 == 'Carrera' %}
+                {%if m.1 == i.1 and m.3 == k.1  %}
+                {%if m.4 == 'V'%}
+                    <div class="circulo">
+
+                    
+                    </div>
+                {% endif %}
+                {%if m.4 == 'A'%}
+                    <div class="circulo" style="background: yellow;">
+
+                    
+                    </div>
+                {% endif %}
+                {%if m.4 == 'R'%}
+                    <div class="circulo" style="background: red;">
+
+                    
+                    </div>
+                {% endif %}
+                {%if m.4 == 'I'%}
+                    <div class="circulo" style="background: blue;">
+
+                    
+                    </div>
+                {% endif %}
+                {%if m.4 == 'FS'%}
+                    <div class="circulo" style="background: black;">
+
+                    
+                    </div>
+                {% endif %}
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+    <br>
+{% endfor %}
+
 {% endblock  %}
