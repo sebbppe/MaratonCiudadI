@@ -27,7 +27,12 @@ bandera=True
 while(bandera):
     try:
         numVehi=int(input("ingrese la cantitidad de vehículos: "))
-        bandera=False
+        if(numVehi<=int(habitantes*0.2)):
+            bandera=False
+        else:
+            numVehi=int(habitantes*0.2)
+            print("Se tomarán  %i vehículos de los ingresados"%numVehi)
+            bandera=False
     except:
         print("Error, debe ingresar un número entero")
 
@@ -36,9 +41,24 @@ tipoVias=["Calle","Avenida Calle","Carrera","Avenida Carrera"]
 calles=[]
 carreras=[]
 for i in range(0,calle):
-    calles.append(tipoVias[rd.randint(0,1)]+" "+str(i))
+    ale=rd.randint(0,1)
+    if(ale==0):
+        if(i%2==0):
+            calles.append([tipoVias[ale]+" "+str(i),"Oriente"])
+        else:
+            calles.append([tipoVias[ale]+" "+str(i),"Occidente"])
+    else:
+        calles.append([tipoVias[ale]+" "+str(i),"Oriente-Occidente"])   
+        
 for i in range(0,carrera):
-    carreras.append(tipoVias[rd.randint(2,3)]+" "+str(i))
+    ale=rd.randint(2,3)
+    if(ale==2):
+        if(i%2==0):
+            carreras.append([tipoVias[ale]+" "+str(i),"Norte"])
+        else:
+            carreras.append([tipoVias[ale]+" "+str(i),"Sur"])
+    else:
+        carreras.append([tipoVias[ale]+" "+str(i),"Norte-Sur"])        
 
 ##creamos a las personas
 personas=[]
@@ -67,10 +87,15 @@ for k in range(0,numVehi):
     elif(tipo==3):
         puestosVehi=rd.randint(20,30)
     tipo=tipoVehi[tipo]
-    vehiculos.append([tipo,puestosVehi,placaText+placaNum])
+    vehiculos.append([tipo,puestosVehi,placaText+placaNum,personas[rd.randint(0,habitantes-1)]])
     
+    
+
     
 print(calles)
 print(carreras)
 print(personas)
-print(vehiculos)
+
+print("Tipo vehículo | Pasajeros | Placa | Propietario")
+for vehi in vehiculos:
+    print(vehi[0]+"               "+str(vehi[1])+"     "+vehi[2]+"     "+vehi[3][0]+" "+vehi[3][1])
